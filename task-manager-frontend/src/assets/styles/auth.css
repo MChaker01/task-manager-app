@@ -1,0 +1,162 @@
+/* Root wrapper for all auth pages */
+.auth {
+  background: var(--bg);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+
+/* Grid layout: left info / right form */
+.auth__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 960px;
+  width: 100%;
+  border: 2px solid var(--ink);
+  overflow: hidden;
+}
+
+/* Left panel (headline / tagline) */
+.auth__aside {
+  padding: 3rem 2rem;
+  border-right: 2px solid var(--ink);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #fff;
+}
+
+/* Adjusted titles */
+.auth__title {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+}
+
+.auth__title span {
+  color: var(--accent);
+  font-family: var(--font-mono);
+}
+
+.auth__tagline {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
+/* Checklist / bullets */
+.auth__bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.auth__bullets li {
+  margin: 0.3rem 0;
+}
+
+/* Right panel (form container) */
+.auth__formwrap {
+  padding: 3rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth__form {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Form intro (optional per page) */
+.auth__formtitle {
+  font-family: var(--font-mono);
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  margin: 0;
+}
+
+.auth__formlead {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* Fields */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.field__label {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Inputs */
+.field input {
+  border: 2px solid var(--ink);
+  padding: 0.7rem;
+  font-size: 1rem;
+  background: #fff;
+}
+
+.field input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: #fff;
+}
+
+/* CTA below form */
+.auth__cta {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.auth__cta a {
+  color: var(--accent);
+  font-weight: bold;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+/* Responsivity */
+@media (max-width: 768px) {
+  .auth__grid {
+    grid-template-columns: 1fr;
+    border: none;
+  }
+  .auth__aside {
+    display: none;
+  }
+  .auth__formwrap {
+    padding: 2rem 1rem;
+  }
+  .auth__form {
+    max-width: 100%;
+  }
+}
+
+/* error messages */
+
+.error-message {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  text-align: center;
+}
