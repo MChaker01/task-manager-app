@@ -30,8 +30,8 @@ const TaskSchema = mongoose.Schema(
     // Statut de la tâche (avec valeurs limitées)
     status: {
       type: String,
-      enum: ["À faire", "En cours", "Terminé"], // Seules ces 3 valeurs sont acceptées
-      default: "À faire", // Valeur par défaut si non spécifié
+      enum: ["To do", "In progress", "Finished"], // Seules ces 3 valeurs sont acceptées
+      default: "To do", // Valeur par défaut si non spécifié
       required: true,
     },
 

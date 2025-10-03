@@ -23,7 +23,7 @@ const createTask = async (req, res) => {
     const newTask = await Task.create({
       title,
       description,
-      status: status || "À faire", // Valeur par défaut si status n'est pas fourni
+      status: status || "To do", // Valeur par défaut si status n'est pas fourni
       dueDate: dueDate || null, // Valeur par défaut si dueDate n'est pas fournie
       user: req.user.id, // Associe cette tâche à l'utilisateur connecté
     });
