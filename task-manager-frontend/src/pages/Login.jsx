@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import authService from "../features/auth/authService";
+import React, { useState, useEffect } from "react";
+import { login, reset } from "../features/auth/authSlice";
 import { useNavigate, Link } from "react-router";
-import { login } from "../";
+import { useDispatch, useSelector } from "react-redux";
+import Spinner from "../components/Spinner";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -12,12 +13,25 @@ const Login = () => {
   const { email, password } = formData;
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate("/");
+    }
+  }, [isError, isSuccess, message, navigate, dispatch]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
+
+    dispatch(reset());
   };
 
   const onSubmit = async (e) => {
@@ -30,6 +44,10 @@ const Login = () => {
 
     dispatch(login(userData));
   };
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <main className="auth login">
@@ -48,8 +66,11 @@ const Login = () => {
         <section className="auth__formwrap">
           <form className="auth__form" onSubmit={onSubmit}>
             <h2 className="auth__formtitle">Log In</h2>
-            <p className="auth__formlead">Please log into your account.</p>
-
+            {isError ? (
+              <div className="error-message">{message}</div>
+            ) : (
+              <p className="auth__formlead">Please log into your account.</p>
+            )}
             <label className="field">
               <span className="field__label">Email</span>
               <input

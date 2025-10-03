@@ -1,7 +1,7 @@
 /* Root wrapper for all auth pages */
 .auth {
   background: var(--bg);
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -151,12 +151,13 @@
 /* error messages */
 
 .error-message {
-  padding: 15px;
-  margin-bottom: 20px;
+  padding: 12px;
+  margin: 15px 0;
   border: 1px solid transparent;
-  border-radius: 4px;
-  color: #a94442;
-  background-color: #f2dede;
-  border-color: #ebccd1;
+  background-color: #f8e0e0;
   text-align: center;
+  border: 2px solid red;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  box-shadow: 2px 2px 0 var(--ink);
 }

@@ -3,15 +3,15 @@ import { Link } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import "../assets/styles/header.css";
-
 import { logout, reset } from "../features/auth/authSlice";
+import logo from "../assets/task-logo.png";
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
 
-  const onLogout = async (e) => {
+  const onLogout = async () => {
     dispatch(logout());
     dispatch(reset());
     navigate("/login");
@@ -20,7 +20,9 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header__logo">
-        <Link to="/">Task App</Link>
+        <Link to="/">
+          <img src={logo} alt="" />
+        </Link>
       </div>
 
       <nav className="header__nav">

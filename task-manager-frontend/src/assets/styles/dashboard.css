@@ -1,0 +1,110 @@
+/* Dashboard wrapper */
+.dashboard {
+  padding: 2rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.dashboard h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  border-bottom: 3px solid var(--ink);
+  padding-bottom: 0.5rem;
+  font-family: var(--font-mono);
+}
+
+/* New Task button */
+.dashboard > button {
+  border: 2px solid var(--ink);
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--font-mono);
+  padding: 0.7rem 1.2rem;
+  cursor: pointer;
+  margin-bottom: 2rem;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+.dashboard > button:hover {
+  background: var(--accent);
+}
+/* Error & empty states */
+.error-message {
+  color: red;
+  border: 2px solid red;
+  padding: 0.8rem;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+.empty-list {
+  color: var(--muted);
+  font-style: italic;
+  border: 2px dashed var(--ink);
+  padding: 2rem;
+  text-align: center;
+}
+
+.task-list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.task-item {
+  border: 2px solid var(--ink);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: #fff;
+  transition: background 0.2s ease;
+}
+.task-item:hover {
+  background: #f2f2f2;
+}
+
+/* Task content */
+.task-content h3 {
+  font-size: 1.2rem;
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+}
+.task-content p {
+  margin: 0 0 0.5rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  max-width: 40ch;
+}
+.status {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  border: 2px solid var(--ink);
+  font-family: var(--font-mono);
+  margin-right: 0.5rem;
+}
+.due-date {
+  font-size: 0.8rem;
+  color: var(--accent);
+  font-family: var(--font-mono);
+}
+
+/* Task actions */
+.task-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.task-actions button {
+  border: 2px solid var(--ink);
+  background: transparent;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  transition: background 0.2s ease;
+}
+.task-actions button:hover {
+  background: var(--ink);
+  color: var(--bg);
+}

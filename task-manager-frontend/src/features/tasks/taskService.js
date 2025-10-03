@@ -30,6 +30,13 @@ const getTasks = async () => {
   return response.data;
 };
 
+// Récupérer une seule tâche :
+const getTask = async (taskId) => {
+  const response = await axios.get(API_URL + `/${taskId}`, getAuthConfig());
+
+  return response.data;
+};
+
 // Supprimer une tâche :
 const deleteTask = async (taskId) => {
   const response = await axios.delete(API_URL + `/${taskId}`, getAuthConfig());
@@ -51,6 +58,7 @@ const updateTask = async (taskId, taskData) => {
 const taskService = {
   createTask,
   getTasks,
+  getTask,
   deleteTask,
   updateTask,
 };

@@ -23,14 +23,17 @@ export const createTask = createAsyncThunk(
 );
 
 // 2. Action asynchrone : Récupérer toutes les tâches
-export const getTasks = createAsyncThunk("tasks/getTasks", async (thunkAPI) => {
-  try {
-    return await taskService.getTasks();
-  } catch (error) {
-    const message = error.response?.data?.message || error.toString();
-    return thunkAPI.rejectWithValue(message);
+export const getTasks = createAsyncThunk(
+  "tasks/getTasks",
+  async (_, thunkAPI) => {
+    try {
+      return await taskService.getTasks();
+    } catch (error) {
+      const message = error.response?.data?.message || error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
   }
-});
+);
 
 // 3. Action asynchrone : Récupérer une tâche
 export const getTask = createAsyncThunk(
@@ -151,9 +154,9 @@ export const taskSlice = createSlice({
       .addCase(getTask.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        // state.tasks = state.tasks.filter((task) => {
-        //     task._id === action.payload.id;
-        // });
+        state.tasks = state.tasks.filter((task) => {
+          task._id === action.payload.id;
+        });
       })
       .addCase(getTask.rejected, (state, action) => {
         state.isLoading = false;

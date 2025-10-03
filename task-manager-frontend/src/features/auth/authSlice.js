@@ -30,6 +30,16 @@ export const register = createAsyncThunk(
   }
 );
 
+// Créer l'action asynchrone pour la connection.
+export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
+  try {
+    return await authService.login(user);
+  } catch (error) {
+    const message = error.response.data.message || error.toString();
+    return thunkAPI.rejectWithValue(message);
+  }
+});
+
 // Créer l'action asynchrone pour la déconnexion
 export const logout = createAsyncThunk("auth/logout", async () => {
   await authService.logout();
@@ -65,6 +75,20 @@ export const authSlice = createSlice({
         state.isError = true; // C'est une erreur !
         state.message = action.payload; // On stocke le message d'erreur
         state.user = null; // En cas d'échec, on s'assure que l'utilisateur est null
+      })
+      .addCase(login.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.user = action.payload;
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        state.user = null;
       })
       .addCase(logout.fulfilled, (state) => {
         state.user = null;

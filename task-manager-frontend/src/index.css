@@ -88,7 +88,7 @@ a {
   width: 64px;
   height: 64px;
   border: 8px solid;
-  border-color: #000 transparent #555 transparent;
+  border-color: #555 #555 transparent;
   border-radius: 50%;
   animation: spin 1.2s linear infinite;
 }
