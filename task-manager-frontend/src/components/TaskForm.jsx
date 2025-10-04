@@ -11,6 +11,8 @@ function TaskForm({ taskToEdit, onClose }) {
     dueDate: "",
   });
 
+  const [error, setError] = useState("");
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,7 +33,10 @@ function TaskForm({ taskToEdit, onClose }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("FORMDATA ENVOYÉ:", formData);
+    if (!formData.title.trim() || !formData.description.trim()) {
+      setError("Title and description are required.");
+      return;
+    }
 
     if (taskToEdit) {
       dispatch(
@@ -44,6 +49,7 @@ function TaskForm({ taskToEdit, onClose }) {
       dispatch(createTask(formData));
     }
 
+    setError("");
     onClose();
   };
 
@@ -58,6 +64,8 @@ function TaskForm({ taskToEdit, onClose }) {
         </button>
 
         <h2 className="modal-title">{taskToEdit ? "Edit Task" : "New Task"}</h2>
+
+        {error && <div className="error-message">{error}</div>}
 
         <form className="task-form" onSubmit={handleSubmit}>
           <div className="form-group">

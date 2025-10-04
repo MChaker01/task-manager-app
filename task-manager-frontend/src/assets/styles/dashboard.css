@@ -50,6 +50,23 @@
   gap: 1.5rem;
 }
 
+.task-list {
+  display: grid;
+  gap: 1rem;
+  animation: fadeInUp 0.3s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .task-item {
   border: 2px solid var(--ink);
   padding: 1rem;
@@ -102,9 +119,43 @@
   padding: 0.4rem 0.8rem;
   cursor: pointer;
   font-family: var(--font-mono);
-  transition: background 0.2s ease;
+  transition: background 0.5s ease;
 }
+
 .task-actions button:hover {
   background: var(--ink);
   color: var(--bg);
+}
+
+.filter-buttons {
+  display: flex;
+  border-bottom: 2px solid var(--ink);
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.filter-buttons button {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  background: none;
+  border: none;
+  border-right: 2px solid var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.5s ease;
+}
+
+.filter-buttons button:last-child {
+  border-right: none;
+}
+
+.filter-buttons button:hover {
+  background: #f2f2f2;
+}
+
+.filter-buttons button.active {
+  font-weight: bold;
+  position: relative;
+  background: #e0e0e0;
 }

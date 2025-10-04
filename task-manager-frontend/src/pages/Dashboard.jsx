@@ -16,6 +16,7 @@ const Dashboard = () => {
 
   const [showModal, setShowModal] = useState(false); // true/false pour afficher/cacher le modal
   const [editingTask, setEditingTask] = useState(null); // null (mode création) ou objet task (mode édition)
+  const [statusFilter, setStatusFilter] = useState("All");
 
   useEffect(() => {
     dispatch(getTasks());
@@ -36,8 +37,15 @@ const Dashboard = () => {
   };
 
   const handleDelete = (taskId) => {
-    dispatch(deleteTask(taskId));
+    if (window.confirm("Delete this task ?")) {
+      dispatch(deleteTask(taskId));
+    }
   };
+
+  const filteredTasks =
+    statusFilter === "All"
+      ? tasks
+      : tasks.filter((task) => task.status === statusFilter);
 
   if (isLoading) {
     return <Spinner />;
@@ -51,11 +59,38 @@ const Dashboard = () => {
 
       {isError && <div className="error-message">{message}</div>}
 
+      <div className="filter-buttons">
+        <button
+          className={statusFilter === "All" ? "active" : ""}
+          onClick={() => setStatusFilter("All")}
+        >
+          All
+        </button>
+        <button
+          className={statusFilter === "To do" ? "active" : ""}
+          onClick={() => setStatusFilter("To do")}
+        >
+          To do
+        </button>
+        <button
+          className={statusFilter === "In progress" ? "active" : ""}
+          onClick={() => setStatusFilter("In progress")}
+        >
+          In progress
+        </button>
+        <button
+          className={statusFilter === "Finished" ? "active" : ""}
+          onClick={() => setStatusFilter("Finished")}
+        >
+          Finished
+        </button>
+      </div>
+
       {tasks.length === 0 ? (
         <div className="empty-list">List of Tasks is Empty.</div>
       ) : (
         <TaskList
-          tasks={tasks}
+          tasks={filteredTasks}
           onEdit={handleOpenEditModal}
           onDelete={handleDelete}
         />
