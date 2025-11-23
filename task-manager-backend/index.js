@@ -45,16 +45,16 @@ const DB_URI = process.env.DB_URI;
 mongoose
   .connect(DB_URI)
   .then(() => {
-    console.log("✅ Connecté à MongoDB avec succès.");
+    console.log("✅ Connected to MongoDB successfully.");
 
-    // Démarrer le serveur SEULEMENT si la connexion à la BDD a réussi
+    // Start the server ONLY if the connection to the database was successful
     const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => {
-      console.log(`🚀 Serveur démarré avec succès sur le port ${PORT}`);
-      console.log(`📍 Accès local : http://localhost:${PORT}`);
+      console.log(`🚀 Server successfully started on port ${PORT}`);
+      console.log(`📍 Local access : http://localhost:${PORT}`);
     });
   })
   .catch((err) => {
-    console.error("❌ Erreur de connexion à MongoDB:", err);
-    process.exit(1); // Arrêter le processus si la BDD ne se connecte pas
+    console.error("❌ MongoDB connection error:", err);
+    process.exit(1); // Stop the process if the database does not connect
   });
